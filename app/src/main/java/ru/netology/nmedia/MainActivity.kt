@@ -1,7 +1,5 @@
 package ru.netology.nmedia
 
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +20,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val systemBars =
+                insets.getInsets(WindowInsetsCompat.Type.systemBars())
 
             view.setPadding(
                 systemBars.left,
@@ -34,44 +33,54 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        var liked = false
-        var likes = 10
-        var shares = 10
-        val views = 5
+        val post = Post(
+            id = 1,
+            author = getString(R.string.author),
+            published = getString(R.string.published),
+            content = getString(R.string.post_content),
+            likedByMe = false,
+            likes = 10,
+            shares = 5,
+            views = 5
+        )
 
-        fun updateStatistics() {
-            binding.likesCount.text = formatCount(likes)
-            binding.sharesCount.text = formatCount(shares)
-            binding.viewsCount.text = formatCount(views)
+        fun renderPost() {
+            with(binding) {
+                author.text = post.author
+                published.text = post.published
+                content.text = post.content
+
+                likesCount.text = formatCount(post.likes)
+                sharesCount.text = formatCount(post.shares)
+                viewsCount.text = formatCount(post.views)
+
+                likeIcon.setImageResource(
+                    if (post.likedByMe) {
+                        R.drawable.baseline_favorite_24
+                    } else {
+                        R.drawable.baseline_favorite_border_24
+                    }
+                )
+            }
         }
 
-        updateStatistics()
+        renderPost()
 
         binding.likeIcon.setOnClickListener {
-            liked = !liked
+            post.likedByMe = !post.likedByMe
 
-            if (liked) {
-                likes++
-                binding.likeIcon.setImageResource(
-                    R.drawable.baseline_favorite_24
-                )
-                binding.likeIcon.imageTintList =
-                    ColorStateList.valueOf(Color.parseColor("#E91E63"))
+            if (post.likedByMe) {
+                post.likes++
             } else {
-                likes--
-                binding.likeIcon.setImageResource(
-                    R.drawable.baseline_favorite_border_24
-                )
-                binding.likeIcon.imageTintList =
-                    ColorStateList.valueOf(Color.parseColor("#757575"))
+                post.likes--
             }
 
-            updateStatistics()
+            renderPost()
         }
 
         binding.shareIcon.setOnClickListener {
-            shares++
-            updateStatistics()
+            post.shares++
+            renderPost()
         }
     }
 
@@ -98,7 +107,8 @@ class MainActivity : AppCompatActivity() {
 
             else -> {
                 val millions = count / 1_000_000
-                val hundredThousands = count % 1_000_000 / 100_000
+                val hundredThousands =
+                    count % 1_000_000 / 100_000
 
                 if (hundredThousands == 0) {
                     "${millions}M"

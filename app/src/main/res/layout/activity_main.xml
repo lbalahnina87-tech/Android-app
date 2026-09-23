@@ -103,7 +103,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/contentDivider"
         app:srcCompat="@drawable/baseline_favorite_border_24"
-        app:tint="#757575" />
+         />
 
     <TextView
         android:id="@+id/likesCount"
