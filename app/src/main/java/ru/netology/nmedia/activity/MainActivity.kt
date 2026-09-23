@@ -1,22 +1,23 @@
-package ru.netology.nmedia
+package ru.netology.nmedia.activity
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.ActivityMainBinding
+import ru.netology.nmedia.viewmodel.PostViewModel
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         enableEdgeToEdge()
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
@@ -33,18 +34,9 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val post = Post(
-            id = 1,
-            author = getString(R.string.author),
-            published = getString(R.string.published),
-            content = getString(R.string.post_content),
-            likedByMe = false,
-            likes = 10,
-            shares = 5,
-            views = 5
-        )
+        val viewModel: PostViewModel by viewModels()
 
-        fun renderPost() {
+        viewModel.data.observe(this) { post ->
             with(binding) {
                 author.text = post.author
                 published.text = post.published
@@ -64,23 +56,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        renderPost()
-
         binding.likeIcon.setOnClickListener {
-            post.likedByMe = !post.likedByMe
-
-            if (post.likedByMe) {
-                post.likes++
-            } else {
-                post.likes--
-            }
-
-            renderPost()
+            viewModel.like()
         }
 
         binding.shareIcon.setOnClickListener {
-            post.shares++
-            renderPost()
+            viewModel.share()
         }
     }
 
