@@ -37,8 +37,8 @@ class PostsAdapter(
         )
 
         return PostViewHolder(
-            binding = binding,
-            onInteractionListener = onInteractionListener
+            binding,
+            onInteractionListener
         )
     }
 
@@ -62,29 +62,27 @@ class PostViewHolder(
             published.text = post.published
             content.text = post.content
 
-            likesCount.text = formatCount(post.likes)
-            sharesCount.text = formatCount(post.shares)
+            like.isChecked = post.likedByMe
+            like.text = formatCount(post.likes)
+
+            share.text = formatCount(post.shares)
+
             viewsCount.text = formatCount(post.views)
 
-            likeIcon.setImageResource(
-                if (post.likedByMe) {
-                    R.drawable.baseline_favorite_24
-                } else {
-                    R.drawable.baseline_favorite_border_24
-                }
-            )
-
-            likeIcon.setOnClickListener {
+            like.setOnClickListener {
                 onInteractionListener.onLike(post)
             }
 
-            shareIcon.setOnClickListener {
+            share.setOnClickListener {
                 onInteractionListener.onShare(post)
             }
 
             menu.setOnClickListener { view ->
 
-                PopupMenu(view.context, view).apply {
+                PopupMenu(
+                    view.context,
+                    view
+                ).apply {
 
                     inflate(R.menu.options_post)
 
@@ -137,7 +135,8 @@ private fun formatCount(count: Int): String {
 
         count < 10_000 -> {
             val thousands = count / 1_000
-            val hundreds = count % 1_000 / 100
+            val hundreds =
+                count % 1_000 / 100
 
             if (hundreds == 0) {
                 "${thousands}K"
@@ -151,7 +150,9 @@ private fun formatCount(count: Int): String {
         }
 
         else -> {
-            val millions = count / 1_000_000
+            val millions =
+                count / 1_000_000
+
             val hundredThousands =
                 count % 1_000_000 / 100_000
 
