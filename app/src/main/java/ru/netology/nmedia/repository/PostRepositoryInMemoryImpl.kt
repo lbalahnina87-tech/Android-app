@@ -15,7 +15,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likes = 999,
             likedByMe = false,
             shares = 15,
-            views = 1_200
+            views = 1_200,
+            "https://rutube.ru/video/6550a91e7e523f9503bed47e4c46d0cb"
         ),
         Post(
             id = 2,
@@ -89,7 +90,10 @@ class PostRepositoryInMemoryImpl : PostRepository {
         } else {
             posts = posts.map { currentPost ->
                 if (currentPost.id == post.id) {
-                    currentPost.copy(content = post.content)
+                    currentPost.copy(
+                        content = post.content,
+                        video = post.video
+                    )
                 } else {
                     currentPost
                 }

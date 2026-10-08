@@ -3,6 +3,7 @@ package ru.netology.nmedia.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +20,8 @@ interface OnInteractionListener {
     fun onEdit(post: Post) {}
 
     fun onRemove(post: Post) {}
+
+    fun onVideo(post: Post) {}
 }
 
 class PostsAdapter(
@@ -66,8 +69,10 @@ class PostViewHolder(
             like.text = formatCount(post.likes)
 
             share.text = formatCount(post.shares)
-
             viewsCount.text = formatCount(post.views)
+
+            videoContainer.isVisible =
+                !post.video.isNullOrBlank()
 
             like.setOnClickListener {
                 onInteractionListener.onLike(post)
@@ -75,6 +80,14 @@ class PostViewHolder(
 
             share.setOnClickListener {
                 onInteractionListener.onShare(post)
+            }
+
+            videoContainer.setOnClickListener {
+                onInteractionListener.onVideo(post)
+            }
+
+            play.setOnClickListener {
+                onInteractionListener.onVideo(post)
             }
 
             menu.setOnClickListener { view ->
@@ -128,10 +141,7 @@ object PostDiffCallback : DiffUtil.ItemCallback<Post>() {
 
 private fun formatCount(count: Int): String {
     return when {
-
-        count < 1_000 -> {
-            count.toString()
-        }
+        count < 1_000 -> count.toString()
 
         count < 10_000 -> {
             val thousands = count / 1_000
