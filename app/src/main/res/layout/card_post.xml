@@ -46,16 +46,16 @@
         app:layout_constraintTop_toBottomOf="@id/author"
         tools:text="21 мая в 18:36" />
 
-    <ImageView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/menu"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="16dp"
+        style="@style/Widget.NMedia.MenuButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="4dp"
         android:contentDescription="@string/menu_description"
+        app:icon="@drawable/baseline_more_vert_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/avatar"
-        app:srcCompat="@drawable/baseline_more_vert_24"
-        app:tint="#757575" />
+        app:layout_constraintTop_toTopOf="@id/avatar" />
 
     <View
         android:id="@+id/headerDivider"
@@ -93,52 +93,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/content" />
 
-    <ImageView
-        android:id="@+id/likeIcon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/like"
+        style="@style/Widget.NMedia.LikeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkable="true"
         android:contentDescription="@string/like"
+        app:icon="@drawable/baseline_favorite_selector_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/contentDivider"
-        app:srcCompat="@drawable/baseline_favorite_border_24" />
-
-    <TextView
-        android:id="@+id/likesCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:textColor="#757575"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@id/likeIcon"
-        app:layout_constraintStart_toEndOf="@id/likeIcon"
-        app:layout_constraintTop_toTopOf="@id/likeIcon"
+        tools:checked="false"
         tools:text="10" />
 
-    <ImageView
-        android:id="@+id/shareIcon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:contentDescription="@string/share"
-        app:layout_constraintBottom_toBottomOf="@id/likeIcon"
-        app:layout_constraintStart_toEndOf="@id/likesCount"
-        app:layout_constraintTop_toTopOf="@id/likeIcon"
-        app:srcCompat="@drawable/baseline_share_24"
-        app:tint="#757575" />
-
-    <TextView
-        android:id="@+id/sharesCount"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/share"
+        style="@style/Widget.NMedia.ShareButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:textColor="#757575"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@id/shareIcon"
-        app:layout_constraintStart_toEndOf="@id/shareIcon"
-        app:layout_constraintTop_toTopOf="@id/shareIcon"
+        android:layout_marginStart="4dp"
+        android:contentDescription="@string/share"
+        app:icon="@drawable/baseline_share_24"
+        app:layout_constraintBottom_toBottomOf="@id/like"
+        app:layout_constraintStart_toEndOf="@id/like"
+        app:layout_constraintTop_toTopOf="@id/like"
         tools:text="5" />
 
     <TextView
@@ -148,9 +127,9 @@
         android:layout_marginEnd="16dp"
         android:textColor="#757575"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@id/likeIcon"
+        app:layout_constraintBottom_toBottomOf="@id/like"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/likeIcon"
+        app:layout_constraintTop_toTopOf="@id/like"
         tools:text="5" />
 
     <ImageView

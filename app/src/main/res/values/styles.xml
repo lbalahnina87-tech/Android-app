@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <style
+        name="Widget.NMedia.MenuButton"
+        parent="Widget.Material3.Button.IconButton">
+
+        <item name="iconTint">?attr/colorControlNormal</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
+
+    </style>
+
+    <style
+        name="Widget.NMedia.LikeButton"
+        parent="Widget.Material3.Button.TextButton.Icon">
+
+        <item name="iconTint">@color/like_button_tint</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="iconPadding">8dp</item>
+
+    </style>
+
+    <style
+        name="Widget.NMedia.ShareButton"
+        parent="Widget.Material3.Button.TextButton.Icon">
+
+        <item name="iconTint">?attr/colorControlNormal</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="iconPadding">8dp</item>
+
+    </style>
+
+</resources>
