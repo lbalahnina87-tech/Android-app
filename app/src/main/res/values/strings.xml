@@ -26,4 +26,15 @@
     <string name="error_empty_content">Post text can\'t be empty</string>
     <string name="editing_post">Editing post</string>
     <string name="cancel_editing">Cancel editing</string>
+
+    <string name="add_post">Add post</string>
+    <string name="new_post">New post</string>
+    <string name="edit_post">Edit post</string>
+    <string name="post_content_hint">Post text</string>
+    <string name="video_link_hint">RUTUBE video link</string>
+    <string name="video_preview">Video preview</string>
+    <string name="open_video">Open video</string>
+    <string name="no_app_for_video">No application can open this video</string>
+    <string name="chooser_share_post">Share post</string>
+
 </resources>

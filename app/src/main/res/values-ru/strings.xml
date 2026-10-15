@@ -22,4 +22,14 @@
     <string name="error_empty_content">Текст публикации не может быть пустым</string>
     <string name="editing_post">Редактирование публикации</string>
     <string name="cancel_editing">Отменить редактирование</string>
+
+    <string name="add_post">Добавить публикацию</string>
+    <string name="new_post">Новая публикация</string>
+    <string name="edit_post">Редактирование публикации</string>
+    <string name="post_content_hint">Текст публикации</string>
+    <string name="video_link_hint">Ссылка на видео RUTUBE</string>
+    <string name="video_preview">Обложка видео</string>
+    <string name="open_video">Открыть видео</string>
+    <string name="no_app_for_video">Не найдено приложение для открытия видео</string>
+    <string name="chooser_share_post">Поделиться постом</string>
 </resources>
