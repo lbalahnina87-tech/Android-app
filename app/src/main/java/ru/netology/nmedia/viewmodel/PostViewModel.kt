@@ -1,14 +1,17 @@
 package ru.netology.nmedia.viewmodel
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.repository.PostRepository
-import ru.netology.nmedia.repository.PostRepositoryInMemoryImpl
+import ru.netology.nmedia.repository.PostRepositoryFileImpl
 
-class PostViewModel : ViewModel() {
+class PostViewModel(
+    application: Application
+) : AndroidViewModel(application) {
 
     private val repository: PostRepository =
-        PostRepositoryInMemoryImpl()
+        PostRepositoryFileImpl(application)
 
     val data = repository.getAll()
 
