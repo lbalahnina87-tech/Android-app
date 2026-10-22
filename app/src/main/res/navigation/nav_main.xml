@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/feedFragment">
+
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="ru.netology.nmedia.fragment.FeedFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_feed">
+
+        <action
+            android:id="@+id/action_feedFragment_to_postDetailsFragment"
+            app:destination="@id/postDetailsFragment" />
+
+        <action
+            android:id="@+id/action_feedFragment_to_postEditorFragment"
+            app:destination="@id/postEditorFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/postDetailsFragment"
+        android:name="ru.netology.nmedia.fragment.PostDetailsFragment"
+        android:label="@string/post_details"
+        tools:layout="@layout/fragment_post_details">
+
+        <action
+            android:id="@+id/action_postDetailsFragment_to_postEditorFragment"
+            app:destination="@id/postEditorFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/postEditorFragment"
+        android:name="ru.netology.nmedia.fragment.PostEditorFragment"
+        android:label="@string/edit_post"
+        tools:layout="@layout/fragment_post_editor" />
+
+</navigation>

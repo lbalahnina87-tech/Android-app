@@ -36,5 +36,6 @@
     <string name="open_video">Open video</string>
     <string name="no_app_for_video">No application can open this video</string>
     <string name="chooser_share_post">Share post</string>
+    <string name="post_details">Post</string>
 
 </resources>
