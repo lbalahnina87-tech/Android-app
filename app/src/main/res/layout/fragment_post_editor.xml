@@ -4,10 +4,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.PostActivity">
+    tools:context=".fragment.PostEditorFragment">
 
     <TextView
         android:id="@+id/screenTitle"
@@ -46,8 +45,7 @@
             android:inputType="textCapSentences|textMultiLine"
             android:maxLines="6"
             android:minHeight="120dp"
-            android:textSize="16sp"
-            tools:text="Текст публикации" />
+            android:textSize="16sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,8 +69,7 @@
             android:layout_height="wrap_content"
             android:inputType="textUri"
             android:maxLines="1"
-            android:textSize="16sp"
-            tools:text="https://rutube.ru/video/..." />
+            android:textSize="16sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
