@@ -2,16 +2,19 @@ package ru.netology.nmedia.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import ru.netology.nmedia.db.AppDb
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.repository.PostRepository
-import ru.netology.nmedia.repository.PostRepositoryFileImpl
+import ru.netology.nmedia.repository.PostRepositorySQLiteImpl
 
 class PostViewModel(
     application: Application
 ) : AndroidViewModel(application) {
 
     private val repository: PostRepository =
-        PostRepositoryFileImpl(application)
+        PostRepositorySQLiteImpl(
+            AppDb.getInstance(application).postDao
+        )
 
     val data = repository.getAll()
 
@@ -20,6 +23,7 @@ class PostViewModel(
         content: String,
         video: String?
     ) {
+
         repository.save(
             Post(
                 id = id,
