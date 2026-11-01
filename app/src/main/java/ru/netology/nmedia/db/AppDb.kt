@@ -1,77 +1,40 @@
-
-
 package ru.netology.nmedia.db
 
 import android.content.Context
-import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import ru.netology.nmedia.dao.PostDao
-import ru.netology.nmedia.dao.PostDaoImpl
+import ru.netology.nmedia.entity.PostEntity
 
-class AppDb private constructor(
-    db: SQLiteDatabase
-) {
+@Database(
+    entities = [PostEntity::class],
+    version = 2,
+    exportSchema = false
+)
+abstract class AppDb : RoomDatabase() {
 
-    val postDao: PostDao = PostDaoImpl(db)
+    abstract val postDao: PostDao
 
     companion object {
-
         @Volatile
         private var instance: AppDb? = null
 
-        fun getInstance(context: Context): AppDb {
-
-            return instance ?: synchronized(this) {
-
-                instance ?: AppDb(
-                    buildDatabase(
-                        context.applicationContext
-                    )
-                ).also {
+        fun getInstance(context: Context): AppDb =
+            instance ?: synchronized(this) {
+                instance ?: buildDatabase(context).also {
                     instance = it
                 }
             }
-        }
 
-        private fun buildDatabase(
-            context: Context
-        ): SQLiteDatabase {
-
-            return DbHelper(
-                context = context,
-                dbVersion = 1,
-                dbName = "app.db",
-                ddls = arrayOf(PostDaoImpl.DDL)
-            ).writableDatabase
-        }
-    }
-}
-
-class DbHelper(
-    context: Context,
-    dbVersion: Int,
-    dbName: String,
-    private val ddls: Array<String>
-) : SQLiteOpenHelper(
-    context,
-    dbName,
-    null,
-    dbVersion
-) {
-
-    override fun onCreate(db: SQLiteDatabase) {
-
-        ddls.forEach { ddl ->
-            db.execSQL(ddl)
-        }
-    }
-
-    override fun onUpgrade(
-        db: SQLiteDatabase,
-        oldVersion: Int,
-        newVersion: Int
-    ) {
-        // Сейчас используется первая версия базы.
-        // Миграции понадобятся при изменении её структуры.
+        private fun buildDatabase(context: Context): AppDb =
+            Room.databaseBuilder(
+                context.applicationContext,
+                AppDb::class.java,
+                "app.db"
+            )
+                .fallbackToDestructiveMigration(true)
+                .allowMainThreadQueries()
+                .build()
     }
 }
