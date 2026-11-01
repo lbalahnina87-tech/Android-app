@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.ksp)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -55,4 +56,6 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.room)
     ksp(libs.androidx.room.compiler)
+    implementation(platform(libs.firebase))
+    implementation(libs.firebase.messaging)
 }
