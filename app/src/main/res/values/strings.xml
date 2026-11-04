@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
 <resources>
     <string name="app_name">NMedia</string>
     <string name="welcome_text">NMedia!</string>
@@ -37,5 +38,9 @@
     <string name="no_app_for_video">No application can open this video</string>
     <string name="chooser_share_post">Share post</string>
     <string name="post_details">Post</string>
+    <string name="channel_remote_name">Server notifications</string>
+    <string name="channel_remote_description">Notifications from the server</string>
+    <string name="notification_user_liked">%1$s liked the post by %2$s</string>
+    <string name="notification_new_post">%1$s published a new post:</string>
 
 </resources>
